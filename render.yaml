@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: employee-feedback-agent
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB
+        value: employee_feedback
+
+databases:
+  - name: feedback-db
+    plan: free
+    databaseName: employee_feedback

@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Feedback Agent | HR AI Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="login-screen" class="login-shell">
+      <div class="login-visual">
+        <div class="login-visual-card">
+          <div class="login-brand">
+            <span class="login-brand-icon">✦</span>
+            <div>
+              <h2>HR Intelligence Suite</h2>
+              <p>Empowering HR with AI-driven employee insights.</p>
+            </div>
+          </div>
+          <div class="login-illustration onboarding-panel">
+            <h3>Why HR Intelligence Suite?</h3>
+            <p>
+              Turn employee feedback into clear actions with AI-powered insight,
+              sentiment tracking, and executive-ready reports.
+            </p>
+            <div class="onboarding-items">
+              <div class="onboarding-item">
+                <span>⚡</span>
+                <div>
+                  <strong>Fast sentiment signals</strong>
+                  <p>Measure team mood and concerns in real time.</p>
+                </div>
+              </div>
+              <div class="onboarding-item">
+                <span>📊</span>
+                <div>
+                  <strong>Smart analytics</strong>
+                  <p>
+                    Spot trends, themes, and risk areas without manual
+                    spreadsheets.
+                  </p>
+                </div>
+              </div>
+              <div class="onboarding-item">
+                <span>🤝</span>
+                <div>
+                  <strong>Action-ready guidance</strong>
+                  <p>
+                    Use prioritized recommendations to improve employee
+                    experience.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="login-caption">
+            Understand sentiment, guide action, and keep your people strategy
+            moving forward.
+          </p>
+        </div>
+      </div>
+
+      <div class="login-card-wrap">
+        <div class="login-card">
+          <div class="login-card-header">
+            <div class="login-logo">FA</div>
+            <h3>Welcome Back</h3>
+            <p>Sign in to continue to your HR dashboard.</p>
+          </div>
+
+          <form id="login-form" class="login-form">
+            <label class="login-field">
+              <span>Email</span>
+              <input
+                type="email"
+                id="login-email"
+                placeholder="you@company.com"
+                required
+              />
+            </label>
+
+            <label class="login-field">
+              <span>Password</span>
+              <div class="password-wrap">
+                <input
+                  type="password"
+                  id="login-password"
+                  placeholder="Enter password"
+                  required
+                />
+                <button
+                  type="button"
+                  id="toggle-password"
+                  class="password-toggle"
+                >
+                  Show
+                </button>
+              </div>
+            </label>
+
+            <div class="login-meta">
+              <label class="remember-me">
+                <input type="checkbox" />
+                <span>Remember me</span>
+              </label>
+              <a href="#" class="forgot-link">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary login-btn">
+              Login
+            </button>
+            <div class="login-footer">
+              <span>© 2026 Feedback Agent</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="app-root" class="app hidden">
+      <aside class="sidebar">
+        <div class="logo-row">
+          <div class="logo">
+            <span class="logo-icon">💬</span>
+            <div>
+              <h1>Feedback Agent</h1>
+              <p>HR Intelligence Platform</p>
+            </div>
+          </div>
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Toggle theme"
+          >
+            <span class="theme-icon">🌙</span>
+          </button>
+        </div>
+        <nav>
+          <button class="nav-btn active" data-tab="submit">
+            📤 Submit Feedback
+          </button>
+          <button class="nav-btn" data-tab="dashboard">📊 HR Dashboard</button>
+          <button class="nav-btn" data-tab="chat">🤖 Ask the Agent</button>
+          <button class="nav-btn" data-tab="report">📄 Generate Report</button>
+        </nav>
+        <div class="sidebar-footer">
+          <div id="status-badge" class="status-badge">Connecting...</div>
+          <div class="sidebar-caption">Live AI insights for people leaders</div>
+        </div>
+      </aside>
+
+      <main class="content">
+        <section class="hero-banner">
+          <div class="hero-copy">
+            <p class="eyebrow">HR Intelligence Suite</p>
+            <p id="welcome-msg" class="welcome-msg">
+              Welcome back! Ready to see the latest HR insights?
+            </p>
+            <h2>Turn employee voices into clear, action-ready insight.</h2>
+            <p>
+              Collect feedback, discover emerging trends, and guide your team
+              with AI-powered sentiment analysis in a beautifully simple
+              workflow.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" data-tab="submit">
+                Launch feedback flow
+              </button>
+              <button class="btn btn-secondary" data-tab="dashboard">
+                View live analytics
+              </button>
+            </div>
+            <div class="hero-pills">
+              <span>⚡ Real-time analysis</span>
+              <span>🧠 Smart summaries</span>
+              <span>🔍 Semantic search</span>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-chart-card">
+              <div class="chart-header">
+                <span>Pulse overview</span>
+                <strong>+24%</strong>
+              </div>
+              <div class="chart-bars">
+                <span style="--h: 42%"></span>
+                <span style="--h: 68%"></span>
+                <span style="--h: 56%"></span>
+                <span style="--h: 82%"></span>
+                <span style="--h: 74%"></span>
+                <span style="--h: 90%"></span>
+              </div>
+              <div class="chart-footer">
+                <span>Engagement</span>
+                <span>Momentum</span>
+              </div>
+            </div>
+            <div class="hero-metric-card">
+              <strong>AI-powered</strong>
+              <span
+                >From raw comments to next-step recommendations in one
+                place.</span
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>Capture every voice</h3>
+            <p>
+              Gather insightful, anonymous feedback from teams across your
+              company.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>Surface key patterns</h3>
+            <p>
+              Spot sentiment shifts, recurring themes, and urgent concerns
+              instantly.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h3>Act with confidence</h3>
+            <p>
+              Turn insights into recommended actions with executive-ready
+              summaries.
+            </p>
+          </div>
+        </section>
+
+        <!-- Submit Feedback Tab -->
+        <section id="tab-submit" class="tab active">
+          <header class="page-header">
+            <h2>Submit Employee Feedback</h2>
+            <p>
+              Share your workplace experience. AI analyzes sentiment, themes,
+              and urgency instantly.
+            </p>
+          </header>
+          <form id="feedback-form" class="card form-card">
+            <div class="form-group">
+              <label for="department">Department</label>
+              <select id="department" required>
+                <option value="Engineering">Engineering</option>
+                <option value="Sales">Sales</option>
+                <option value="Marketing">Marketing</option>
+                <option value="HR">HR</option>
+                <option value="Operations">Operations</option>
+                <option value="General">General</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="feedback-text">Your Feedback</label>
+              <textarea
+                id="feedback-text"
+                rows="6"
+                placeholder="Describe your experience, suggestions, or concerns..."
+                required
+                minlength="10"
+              ></textarea>
+            </div>
+            <div class="form-row">
+              <label class="checkbox-label">
+                <input type="checkbox" id="is-anonymous" checked />
+                Submit anonymously
+              </label>
+              <input
+                type="text"
+                id="employee-name"
+                placeholder="Your name (optional)"
+                disabled
+              />
+            </div>
+            <button type="submit" class="btn btn-primary" id="submit-btn">
+              Analyze & Submit
+            </button>
+          </form>
+          <div id="analysis-result" class="card analysis-card hidden"></div>
+        </section>
+
+        <!-- Dashboard Tab -->
+        <section id="tab-dashboard" class="tab">
+          <header class="page-header">
+            <h2>HR Analytics Dashboard</h2>
+            <p>Real-time sentiment trends and feedback overview.</p>
+          </header>
+          <div class="stats-grid" id="stats-grid">
+            <div class="stat-card">
+              <span class="stat-value" id="stat-total">—</span
+              ><span class="stat-label">Total Feedback</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value" id="stat-sentiment">—</span
+              ><span class="stat-label">Avg Sentiment</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value" id="stat-index">—</span
+              ><span class="stat-label">Vector Index</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value" id="stat-llm">—</span
+              ><span class="stat-label">LLM Status</span>
+            </div>
+          </div>
+          <div class="dashboard-preview">
+            <div class="dashboard-preview-card">
+              <h3>Team mood</h3>
+              <p class="preview-value">85%</p>
+              <p class="preview-note">
+                Positive sentiment across recent submissions.
+              </p>
+            </div>
+            <div class="dashboard-preview-card">
+              <h3>Action items</h3>
+              <p class="preview-value">4</p>
+              <p class="preview-note">
+                Priority recommendations waiting for review.
+              </p>
+            </div>
+            <div class="dashboard-preview-card">
+              <h3>Top trend</h3>
+              <p class="preview-value">Work-life balance</p>
+              <p class="preview-note">
+                Most discussed theme from latest feedback.
+              </p>
+            </div>
+          </div>
+          <div class="dashboard-grid">
+            <div class="card">
+              <h3>Recent Feedback</h3>
+              <div id="feedback-list" class="feedback-list"></div>
+            </div>
+            <div class="card">
+              <h3>Semantic Search</h3>
+              <div class="search-box">
+                <input
+                  type="text"
+                  id="search-query"
+                  placeholder="Search feedback (e.g. 'work life balance')"
+                />
+                <button class="btn btn-secondary" id="search-btn">
+                  Search
+                </button>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chat Tab -->
+        <section id="tab-chat" class="tab">
+          <header class="page-header">
+            <h2>Ask the Feedback Agent</h2>
+            <p>Chat with the AI HR assistant powered by Groq LLM + RAG.</p>
+          </header>
+          <div class="card chat-container">
+            <div id="chat-messages" class="chat-messages">
+              <div class="chat-msg agent">
+                Hello! I'm your HR Feedback Agent. Ask me about employee
+                sentiment, department trends, or recommended actions.
+              </div>
+            </div>
+            <form id="chat-form" class="chat-input-row">
+              <input
+                type="text"
+                id="chat-question"
+                placeholder="e.g. What are the main concerns in Engineering?"
+                required
+              />
+              <button type="submit" class="btn btn-primary">Ask</button>
+            </form>
+          </div>
+        </section>
+
+        <!-- Report Tab -->
+        <section id="tab-report" class="tab">
+          <header class="page-header">
+            <h2>Executive HR Report</h2>
+            <p>
+              AI-generated summary with key findings and recommended actions.
+            </p>
+          </header>
+          <div class="report-controls">
+            <button class="btn btn-primary" id="generate-report-btn">
+              Generate Report
+            </button>
+            <button class="btn btn-secondary hidden" id="download-report-btn">
+              Download PDF
+            </button>
+          </div>
+          <div id="report-output" class="card report-card hidden"></div>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>
