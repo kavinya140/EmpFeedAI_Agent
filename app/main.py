@@ -50,10 +50,23 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+import os
+
+# In production, set ALLOWED_ORIGINS env var to your Vercel frontend URL.
+# Example: "https://employee-feedback-agent.vercel.app"
+# Multiple origins can be comma-separated.
+# Falls back to "*" (allow all) if not set — safe for initial deployment.
+_raw_origins = os.getenv("ALLOWED_ORIGINS", "*")
+_allowed_origins: list[str] | str = (
+    [o.strip() for o in _raw_origins.split(",") if o.strip()]
+    if _raw_origins != "*"
+    else ["*"]
+)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=_allowed_origins,
+    allow_credentials=_raw_origins != "*",
     allow_methods=["*"],
     allow_headers=["*"],
 )

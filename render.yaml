@@ -1,8 +1,10 @@
 services:
   - type: web
     name: employee-feedback-agent
-    runtime: docker
+    runtime: python
     plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
       - key: GROQ_API_KEY
@@ -11,8 +13,11 @@ services:
         sync: false
       - key: MONGODB_DB
         value: employee_feedback
-
-databases:
-  - name: feedback-db
-    plan: free
-    databaseName: employee_feedback
+      - key: CHROMA_PERSIST_DIR
+        value: ./chroma_store
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: ALLOWED_ORIGINS
+        sync: false   # Set this to your Vercel URL, e.g. https://employee-feedback-agent.vercel.app

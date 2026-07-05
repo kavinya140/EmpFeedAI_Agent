@@ -1,4 +1,8 @@
-const API = "/api";
+// API base URL.
+// - Local / Render (same-origin): relative path works fine → ""
+// - Vercel (cross-origin): set window.__API_BASE__ via config.js (see below)
+//   e.g.  window.__API_BASE__ = "https://your-app.onrender.com";
+const API = (window.__API_BASE__ || "") + "/api";
 const loginScreen = document.getElementById("login-screen");
 const appRoot = document.getElementById("app-root");
 
