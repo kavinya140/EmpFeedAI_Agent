@@ -20,4 +20,4 @@ services:
       - key: PYTHON_VERSION
         value: "3.11.9"
       - key: ALLOWED_ORIGINS
-        value: "*"   # Update after Vercel deploy with exact URL e.g. https://employee-feedback-agent.vercel.app
+        value: "https://emp-feed-ai-agent.vercel.app,https://empfeedai.onrender.com"
