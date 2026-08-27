@@ -16,8 +16,8 @@ services:
       - key: CHROMA_PERSIST_DIR
         value: ./chroma_store
       - key: GROQ_MODEL
-        value: llama-3.3-70b-versatile
+        value: qwen/qwen3.8-27b
       - key: PYTHON_VERSION
         value: "3.11.9"
       - key: ALLOWED_ORIGINS
-        sync: false   # Set this to your Vercel URL, e.g. https://employee-feedback-agent.vercel.app
+        value: "*"   # Update after Vercel deploy with exact URL e.g. https://employee-feedback-agent.vercel.app

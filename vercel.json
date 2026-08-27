@@ -13,6 +13,10 @@
       "dest": "/frontend/static/$1"
     },
     {
+      "src": "/",
+      "dest": "/frontend/static/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/frontend/static/$1"
     }
