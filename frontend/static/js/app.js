@@ -119,19 +119,37 @@ function showToast(message, type = "success") {
 
 async function checkStatus() {
   const badge = document.getElementById("status-badge");
-  try {
-    const res = await fetch(`${API}/status`);
-    const data = await res.json();
-    badge.textContent = data.llm_configured
-      ? "● Live • LLM ready"
-      : "● Live • No LLM key";
-    badge.className = "status-badge online";
-    return data;
-  } catch {
-    badge.textContent = "● Offline";
-    badge.className = "status-badge offline";
-    return null;
+  badge.textContent = "● Connecting...";
+  badge.className = "status-badge";
+
+  // Render free tier sleeps after inactivity — retry for up to 90s to let it wake up
+  const MAX_ATTEMPTS = 6;
+  const DELAY_MS = 15000;
+
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 14000);
+      const res = await fetch(`${API}/status`, { signal: controller.signal });
+      clearTimeout(timer);
+      const data = await res.json();
+      badge.textContent = data.llm_configured
+        ? "● Live • LLM ready"
+        : "● Live • No LLM key";
+      badge.className = "status-badge online";
+      return data;
+    } catch {
+      if (attempt < MAX_ATTEMPTS) {
+        badge.textContent = `● Waking up... (${attempt}/${MAX_ATTEMPTS})`;
+        badge.className = "status-badge";
+        await new Promise((r) => setTimeout(r, DELAY_MS));
+      } else {
+        badge.textContent = "● Offline";
+        badge.className = "status-badge offline";
+      }
+    }
   }
+  return null;
 }
 
 document.getElementById("is-anonymous")?.addEventListener("change", (e) => {
@@ -197,6 +215,10 @@ function showAnalysisResult(fb) {
 
 async function loadDashboard() {
   try {
+    // Wait for server to be ready (handles Render free tier cold start)
+    const status = await checkStatus();
+    if (!status) return;
+
     const [analyticsRes, feedbackRes] = await Promise.all([
       fetch(`${API}/analytics`),
       fetch(`${API}/feedback?limit=20`),
@@ -425,5 +447,4 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
-checkStatus();
 loadDashboard();
